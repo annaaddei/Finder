@@ -26,7 +26,7 @@
     </style>
 
     <script type="text/javascript" src="js/cordova.js"></script>
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBghH_2PUFeoyXEU5V3cbCgyBYYFhk7snQ" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBghH_2PUFeoyXEU5V3cbCgyBYYFhk7snQ&zoom=10" type="text/javascript"></script>
     <script type="text/javascript">
         navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000 });
         function onSuccess(position) {
@@ -38,6 +38,8 @@
             var mapOptions = {zoom: 4,center: myLatlng}
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
             var marker = new google.maps.Marker({position: myLatlng,map: map});
+            map.setZoom(17);
+            map.panTo(curmarker.position);
         }
         function onError(error) {
             alert('code: ' + error.code + '\n' +
