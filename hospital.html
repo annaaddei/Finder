@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Restaurants</title>
+    <title>Hospitals</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,7 +22,7 @@
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0; padding: 0 }
-        #map-canvas { height: 100% }
+        #showStores { height: 100% }
     </style>
 
     <script type="text/javascript" src="js/cordova.js"></script>
@@ -31,7 +31,6 @@
         var map;
         var infowindow;
         var service;
-
         navigator.geolocation.getCurrentPosition(showMap, onError, { timeout: 30000 });
 
         function showMap (position) {
@@ -39,9 +38,9 @@
             var lang=position.coords.longitude;
 
             var center = new google.maps.LatLng(lat,lang);
-            var mapCanvas = document.getElementById("map-canvas");
+            var mapCanvas = document.getElementById("showStores");
             var mapOptions = {center: center, zoom:12};
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            map = new google.maps.Map(document.getElementById('showStores'), mapOptions);
             var image = "images/marker.png";
             var marker = new google.maps.Marker({position: center, icon:image});
 
@@ -52,12 +51,12 @@
             service.nearbySearch({
                 location: center,
                 radius: 10000,
-                type: ['restaurant']
+                type: ['hospital']
             }, callback);
 
             var directory = document.getElementById("directory");
             var div = document.createElement('div');
-            div.innerHTML = '<a href="restaurants_dir.html"><img src="images/dir.png"></a>';
+            div.innerHTML = '<a href="hospital_dir.html"><img src="images/dir.png"></a>';
             directory.appendChild(div);
 
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(directory);
@@ -67,7 +66,6 @@
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     createMarker(results[i]);
-
                 }
             }
         }
@@ -90,12 +88,14 @@
                     'message: ' + error.message + '\n');
         }
 
+
     </script>
+
 
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Restaurants</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Hospitals</a>
 
         <ul id="nav-mobile" class="side-nav">
             <li><div class="userView">
@@ -113,8 +113,8 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-    <div id="map-canvas"></div>
-    <div id="directory"></div>
+<div id="showStores"></div>
+<div id="directory"></div>
 
 
 <footer class="page-footer orange">

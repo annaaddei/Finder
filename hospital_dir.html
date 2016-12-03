@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Restaurants</title>
-
+    <title>Directory</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
     <script>
         var userAgent = navigator.userAgent + '';
         if (userAgent.indexOf('iPhone') > -1) {
@@ -19,70 +19,52 @@
             var mobile_system = '';
         }
     </script>
-    <style type="text/css">
-        html { height: 100% }
-        body { height: 100%; margin: 0; padding: 0 }
-        #map-canvas { height: 100% }
-    </style>
-
-    <script type="text/javascript" src="js/cordova.js"></script>
 
     <script type="text/javascript">
-        var map;
-        var infowindow;
+
         var service;
 
-        navigator.geolocation.getCurrentPosition(showMap, onError, { timeout: 30000 });
+        navigator.geolocation.getCurrentPosition(getPlaces, onError, { timeout: 30000 });
 
-        function showMap (position) {
-            var lat=position.coords.latitude;
-            var lang=position.coords.longitude;
+        function getPlaces (position) {
+            var lat = position.coords.latitude;
+            var lang = position.coords.longitude;
 
-            var center = new google.maps.LatLng(lat,lang);
-            var mapCanvas = document.getElementById("map-canvas");
+            var center = new google.maps.LatLng(lat, lang);
             var mapOptions = {center: center, zoom:12};
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            var image = "images/marker.png";
-            var marker = new google.maps.Marker({position: center, icon:image});
 
-            marker.setMap(map);
-
-            infowindow = new google.maps.InfoWindow();
-            service = new google.maps.places.PlacesService(map);
+            service = new google.maps.places.PlacesService(document.getElementById('directory'), mapOptions);
             service.nearbySearch({
                 location: center,
                 radius: 10000,
-                type: ['restaurant']
+                type: ['hospital']
             }, callback);
-
-            var directory = document.getElementById("directory");
-            var div = document.createElement('div');
-            div.innerHTML = '<a href="restaurants_dir.html"><img src="images/dir.png"></a>';
-            directory.appendChild(div);
-
-            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(directory);
         }
+
 
         function callback(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
-                    createMarker(results[i]);
-
+                    service.getDetails({
+                        placeId: results[i].place_id
+                    }, function(place, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            var place_dir = document.getElementById("directory");
+                            var div = document.createElement('div');
+                            div.innerHTML = '<ul class="collection">' +
+                                    '<li class="collection-item avatar">'+
+                                    '<img src="images/hospital.png" alt="" class="circle">'+
+                                    '<span style="color: darkorange" class="title"> '+place.name+'</span>'+
+                                    '<p>Address: '+place.formatted_address+' <br>Phone: '+
+                                    place.international_phone_number+
+                                    '<br>Website: '+ place.website+
+                                    '</p>'+
+                                    '</li></ul>';
+                            place_dir.appendChild(div);
+                        }
+                    });
                 }
             }
-        }
-
-        function createMarker(place) {
-            var placeLoc = place.geometry.location;
-            var marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location
-            });
-
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(place.name);
-                infowindow.open(map, this);
-            });
         }
 
         function onError(error) {
@@ -91,11 +73,10 @@
         }
 
     </script>
-
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Restaurants</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Hospitals</a>
 
         <ul id="nav-mobile" class="side-nav">
             <li><div class="userView">
@@ -113,8 +94,9 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-    <div id="map-canvas"></div>
-    <div id="directory"></div>
+<br>
+<div class="center"><a href="hospital.html">Return to Map</a></div>
+<div id="directory"></div>
 
 
 <footer class="page-footer orange">
@@ -127,9 +109,10 @@
 
 
 <!--  Scripts-->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBPIyRMtw_TD8PgkuCSlkkhvrmrXoAFL90&libraries=places&callback=showMap"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBPIyRMtw_TD8PgkuCSlkkhvrmrXoAFL90&libraries=places&callback=getPlaces"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
+
 </body>
 </html>

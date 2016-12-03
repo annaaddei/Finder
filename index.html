@@ -23,53 +23,33 @@
     </script>
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
-    <script type="text/javascript">
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000 });
-      function onSuccess(position) {
-        var lat=position.coords.latitude;
-        var lang=position.coords.longitude;
 
-  //Google Maps
-        var myLatlng = new google.maps.LatLng(lat,lang);
-        var mapOptions = {zoom: 4,center: myLatlng}
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        var marker = new google.maps.Marker({position: myLatlng,map: map});
-      }
-      function onError(error) {
-        alert('code: ' + error.code + '\n' +
-                'message: ' + error.message + '\n');
-      }
-      google.maps.event.addDomListener(window, 'load', onSuccess);
-
-    </script>
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">THE LOOKUP</a>
+    <div class="nav-wrapper container"><a style="color: black" id="logo-container" href="#" class="brand-logo">LOOKUP</a>
 
       <ul id="nav-mobile" class="side-nav">
         <li><div class="userView">
-`         <div class=" center">
+         <div class=" center">
           <img src="images/logo.png">
         </div>
       </div></li>
         <div class="center">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html">Restaurants</a></li>
-        <li><a href="index.html">Grocery Stores</a></li>
-        <li><a href="index.html">ATMs</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="restaurants.html">Restaurants</a></li>
+            <li><a href="atm.html">ATMs</a></li>
+            <li><a href="hospital.html">Hospitals</a></li>
         </div>
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><img style="padding-top: 5px" src="images/menu.png"></a>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br>
       <h3 class="header center orange-text">Your search begins here</h3>
-
-      <br><br>
+      <br>
 
     </div>
   </div>
@@ -81,31 +61,32 @@
       <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m4">
-          <div class="icon-block">
-              <a href="restaurants.html"><h2 class="center light-blue-text"><i class="material-icons">room_service</i></h2></a>
-            <h5 class="center">Restaurants</h5>
+          <div class="center">
+              <a href="restaurants.html"><img src="images/restaurant.png"></a>
+            <h4 class="center">Restaurants</h4>
 
             <p class="light center">Hungry? Allow us to find you some good place to eat</p>
           </div>
         </div>
-
+        <br><br>
         <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">shopping_basket</i></h2>
-            <h5 class="center">Grocery Stores</h5>
-
-            <p class="light center">Stock up your cabinets at the closest store to you</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">credit_card</i></h2>
-            <h5 class="center">ATMs</h5>
+          <div class="center">
+              <a href="atm.html"> <img src="images/atm.png"></a>
+            <h4 class="center">ATMs</h4>
 
             <p class="light center">Don't stay short of cash. Find an ATM near you.</p>
           </div>
         </div>
+          <br>
+          <br>
+          <div class="col s12 m4">
+              <div class="center">
+                  <a href="hospital.html"><img src="images/hospital.png"></a>
+                  <h4 class="center">Hospitals</h4>
+
+                  <p class="light center">Find the nearest health care provider</p>
+              </div>
+          </div>
       </div>
 
     </div>
