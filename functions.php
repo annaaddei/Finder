@@ -80,7 +80,7 @@ class functions extends Adb2
 
 }
 //$obj = new functions();
-//$result = $obj->addPlace('Ashesi University Cafeteria', 5.759368, -0.220132, 'restaurant', 'No. 1 University Avenue, Berekuso' );
+//$result = $obj->login('stephane.nwulley@gmail.com', 'teacher');
 //print_r($result);
 //
 //if ($result == 1) {

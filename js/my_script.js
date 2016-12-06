@@ -13,7 +13,7 @@ $(function () {
         var phoneNumber = document.getElementById('signUpPhoneNumber').value;
         var password = document.getElementById('signUpPassword').value;
 
-        var theUrl = "ajax.php?cmd=2&name=" +name+ "&password=" + password +
+        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=2&name=" +name+ "&password=" + password +
             "&email="+email+ "&phoneNumber=" + phoneNumber;
         var obj = sendRequest(theUrl);
 
@@ -34,7 +34,7 @@ $(function () {
         var email = document.getElementById('loginEmail').value;
         var password = document.getElementById('loginPassword').value;
 
-        var theUrl = "ajax.php?cmd=1&email="+email+"&password="+password;
+        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=1&email="+email+"&password="+password;
         var obj = sendRequest(theUrl);
 
         if (obj.result === 1) {
@@ -61,7 +61,7 @@ $(function () {
         var address = document.getElementById('address').value;
         var type = document.getElementById('place_type').value;
 
-        var theUrl = "ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
+        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
             "&latitude="+latitude+ "&address=" + address+ "&type=" + type;
         var obj = sendRequest(theUrl);
 
