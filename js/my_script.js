@@ -19,11 +19,59 @@ $(function () {
 
         if (obj.result == 1) {
             alert("Sign up successful");
-            window.open("index.html");
+            window.open("login.html");
 
         } else {
             alert("failed to sign up");
             window.open("sign_up.html");
+
+        }
+    });
+});
+
+$(function () {
+    $('#loginButton').click(function () {
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+
+        var theUrl = "ajax.php?cmd=1&email="+email+"&password="+password;
+        var obj = sendRequest(theUrl);
+
+        if (obj.result === 1) {
+            alert("Login successful");
+            if(email == "admin@gmail.com"){
+                window.open("admin_index.html");
+            }else {
+                window.open("index.html");
+            }
+
+        } else {
+            alert("failed to login");
+            window.open("login.html");
+
+        }
+    });
+});
+
+$(function () {
+    $('#addPlaceButton').click(function () {
+        var name = document.getElementById('name').value;
+        var longitude = document.getElementById('longitude').value;
+        var latitude = document.getElementById('latitude').value;
+        var address = document.getElementById('address').value;
+        var type = document.getElementById('place_type').value;
+
+        var theUrl = "ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
+            "&latitude="+latitude+ "&address=" + address+ "&type=" + type;
+        var obj = sendRequest(theUrl);
+
+        if (obj.result == 1) {
+            alert("Add place successful");
+            window.open("restaurants_admin.html");
+
+        } else {
+            alert("failed to add place");
+            window.open("add_place.html");
 
         }
     });

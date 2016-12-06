@@ -8,6 +8,9 @@ switch ($cmd) {
     case 2:
         signUp();        //if cmd=2 the call sign up
         break;
+    case 3:
+        addPlace();        //if cmd=2 the call add place
+        break;
 
 }
 
@@ -16,19 +19,19 @@ function login()
     include_once("functions.php");
     $obj = new functions();
 
-    if (!isset($_GET['username'])) {
+    if (!isset($_GET['email'])) {
         exit();
     }
-    $username = $_GET['username'];
+    $email = $_GET['email'];
     $password = $_GET['password'];
 
-    $result = $obj->login($username, $password);
+    $result = $obj->login($email, $password);
     $row = $result->fetch_assoc();
     if ($row) {
         echo '{"result":1,"message":"valid login"}';
        session_start();
-       $_SESSION['username']=$row['username'];
-        $_SESSION['phonenumber']=$row['phonenumber'];
+       $_SESSION['name']=$row['name'];
+        $_SESSION['phoneNumber']=$row['phoneNumber'];
     } else {
         echo '{"result":0,"message":"invalid login"}';
     }
@@ -54,6 +57,30 @@ function signUp()
         echo '{"result":1,"message":"sign up successful"}';
     } else {
         echo '{"result":0,"message":"sign up failed"}';
+    }
+
+}
+
+function addPlace()
+{
+    include_once("functions.php");
+    $obj = new functions();
+
+    if (!isset($_GET['name'])) {
+        exit();
+    }
+    $name = $_GET['name'];
+    $address = $_GET['address'];
+    $longitude = $_GET['longitude'];
+    $latitude = $_GET['latitude'];
+    $type = $_GET['type'];
+
+    $result = $obj->addPlace($name, $longitude, $latitude, $type, $address);
+
+    if($result == 1) {
+        echo '{"result":1,"message":"add place successful"}';
+    } else {
+        echo '{"result":0,"message":"add place failed"}';
     }
 
 }

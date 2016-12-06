@@ -80,6 +80,7 @@
                     });
                 });
             });
+
             service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
                 location: center,
@@ -89,7 +90,7 @@
 
             var directory = document.getElementById("directory");
             var div = document.createElement('div');
-            div.innerHTML = '<a href="restaurants_dir.html"><img src="images/dir.png"></a>';
+            div.innerHTML = '<a href="add_place.html"><img src="images/add.png"></a>';
             directory.appendChild(div);
 
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(directory);
@@ -134,6 +135,17 @@
                 infowindow.open(map, this);
             });
 
+            google.maps.event.addListener(map, 'click', function(event) {
+                var latitude = event.latLng.lat();
+                var longitude = event.latLng.lng();
+                var point = new google.maps.LatLng(
+                        parseFloat(latitude),
+                        parseFloat(longitude));
+
+                infowindow.setContent(latitude+ ','+longitude);
+                infowindow.setPosition(point);
+                infowindow.open(map, this);
+            });
         }
 
         function onError(error) {
@@ -155,18 +167,19 @@
             </div>
             </div></li>
             <div class="center">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="restaurants.html">Restaurants</a></li>
-                <li><a href="atm.html">ATMs</a></li>
-                <li><a href="hospital.html">Hospitals</a></li>
+                <li><a href="admin_index.html">Home</a></li>
+                <li><a href="restaurants_admin.html">Restaurants</a></li>
+                <li><a href="atm_admin.html">ATMs</a></li>
+                <li><a href="hospital_admin.html">Hospitals</a></li>
+                <li><a href="add_place.html">Add to map</a></li>
                 <li><a href="login.html">Logout</a></li>
             </div>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-    <div id="map-canvas"></div>
-    <div id="directory"></div>
+<div id="map-canvas"></div>
+<div id="directory"></div>
 
 
 <footer class="page-footer orange">

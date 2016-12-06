@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Restaurants</title>
+    <title>Hospitals</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,7 +22,7 @@
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0; padding: 0 }
-        #map-canvas { height: 100% }
+        #showAtms { height: 100% }
     </style>
 
     <script type="text/javascript" src="js/cordova.js"></script>
@@ -31,7 +31,6 @@
         var map;
         var infowindow;
         var service;
-
         navigator.geolocation.getCurrentPosition(showMap, onError, { timeout: 30000 });
 
         function showMap (position) {
@@ -39,85 +38,34 @@
             var lang=position.coords.longitude;
 
             var center = new google.maps.LatLng(lat,lang);
-            var mapCanvas = document.getElementById("map-canvas");
+            var mapCanvas = document.getElementById("showAtms");
             var mapOptions = {center: center, zoom:12};
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            map = new google.maps.Map(document.getElementById('showAtms'), mapOptions);
             var image = "images/marker.png";
             var marker = new google.maps.Marker({position: center, icon:image});
 
             marker.setMap(map);
 
             infowindow = new google.maps.InfoWindow();
-
-            downloadUrl('database_markers.php', function(data) {
-
-                var xml = data.responseXML;
-                var markers = xml.documentElement.getElementsByTagName('marker');
-                Array.prototype.forEach.call(markers, function(markerElem) {
-                    var name = markerElem.getAttribute('name');
-                    var address = markerElem.getAttribute('address');
-                    var type = markerElem.getAttribute('type');
-                    var point = new google.maps.LatLng(
-                            parseFloat(markerElem.getAttribute('lat')),
-                            parseFloat(markerElem.getAttribute('lng')));
-
-                    var infowincontent = document.createElement('div');
-                    var strong = document.createElement('strong');
-                    strong.textContent = name
-                    infowincontent.appendChild(strong);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var text = document.createElement('text');
-                    text.textContent = address
-                    infowincontent.appendChild(text);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: point
-                    });
-                    marker.addListener('click', function() {
-                        infowindow.setContent(infowincontent);
-                        infowindow.open(map, marker);
-                    });
-                });
-            });
             service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
                 location: center,
                 radius: 10000,
-                type: ['restaurant']
+                type: ['atm']
             }, callback);
 
             var directory = document.getElementById("directory");
             var div = document.createElement('div');
-            div.innerHTML = '<a href="restaurants_dir.html"><img src="images/dir.png"></a>';
+            div.innerHTML = '<a href="add_place.html"><img src="images/add.png"></a>';
             directory.appendChild(div);
 
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(directory);
         }
 
-        function downloadUrl(url, callback) {
-            var request = window.ActiveXObject ?
-                    new ActiveXObject('Microsoft.XMLHTTP') :
-                    new XMLHttpRequest;
-
-            request.onreadystatechange = function() {
-                if (request.readyState == 4) {
-                    request.onreadystatechange = doNothing;
-                    callback(request, request.status);
-                }
-            };
-
-            request.open('GET', url, true);
-            request.send(null);
-        }
-
-        function doNothing() {}
-
         function callback(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     createMarker(results[i]);
-
                 }
             }
         }
@@ -133,7 +81,6 @@
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
             });
-
         }
 
         function onError(error) {
@@ -141,12 +88,14 @@
                     'message: ' + error.message + '\n');
         }
 
+
     </script>
+
 
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Restaurants</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ATMs</a>
 
         <ul id="nav-mobile" class="side-nav">
             <li><div class="userView">
@@ -155,18 +104,19 @@
             </div>
             </div></li>
             <div class="center">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="restaurants.html">Restaurants</a></li>
-                <li><a href="atm.html">ATMs</a></li>
-                <li><a href="hospital.html">Hospitals</a></li>
+                <li><a href="admin_index.html">Home</a></li>
+                <li><a href="restaurants_admin.html">Restaurants</a></li>
+                <li><a href="atm_admin.html">ATMs</a></li>
+                <li><a href="hospital_admin.html">Hospitals</a></li>
+                <li><a href="add_place.html">Add to map</a></li>
                 <li><a href="login.html">Logout</a></li>
             </div>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
-    <div id="map-canvas"></div>
-    <div id="directory"></div>
+<div id="showAtms"></div>
+<div id="directory"></div>
 
 
 <footer class="page-footer orange">

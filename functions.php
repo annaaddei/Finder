@@ -32,17 +32,46 @@ class functions extends Adb2
         }
     }
 
-    function login($username, $password)
+    function addPlace($name, $longitude, $latitude, $type, $address )
     {
         $strQuery = /** @lang MySQL */
-            "SELECT username, password , phonenumber
+            "INSERT into markers set
+						name = ?,
+						address = ?,
+						lat = ?,
+						lng = ?,
+						type = ?
+						";
+        if ($statement = $this->prepare($strQuery)) {
+            $statement->bind_param("ssdds", $name, $address, $latitude, $longitude, $type);
+            return $statement->execute();
+        }
+    }
+
+    function login($email, $password)
+    {
+        $strQuery = /** @lang MySQL */
+            "SELECT email, password , phoneNumber, name
               FROM users 
-              WHERE username = ? 
+              WHERE email = ? 
               AND password = ?
               LIMIT 1";
 
         if ($statement = $this->prepare($strQuery)) {
-            $statement->bind_param("ss", $username, $password);
+            $statement->bind_param("ss", $email, $password);
+            $statement->execute();
+            return $statement->get_result();
+        }
+    }
+
+    function get_database_markers()
+    {
+        $strQuery = /** @lang MySQL */
+            "SELECT *
+              FROM markers 
+            ";
+
+        if ($statement = $this->prepare($strQuery)) {
             $statement->execute();
             return $statement->get_result();
         }
@@ -51,7 +80,7 @@ class functions extends Adb2
 
 }
 //$obj = new functions();
-//$result = $obj->addUser("Anna Addei", "anna.addei@gmail.com", "love", "233274446115");
+//$result = $obj->addPlace('Ashesi University Cafeteria', 5.759368, -0.220132, 'restaurant', 'No. 1 University Avenue, Berekuso' );
 //print_r($result);
 //
 //if ($result == 1) {
