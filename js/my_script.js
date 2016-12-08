@@ -13,43 +13,72 @@ $(function () {
         var phoneNumber = document.getElementById('signUpPhoneNumber').value;
         var password = document.getElementById('signUpPassword').value;
 
-        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=2&name=" +name+ "&password=" + password +
+        var theUrl = "ajax.php?cmd=2&name=" +name+ "&password=" + password +
             "&email="+email+ "&phoneNumber=" + phoneNumber;
         var obj = sendRequest(theUrl);
 
         if (obj.result == 1) {
             alert("Sign up successful");
-            window.open("login.html");
+            window.location.assign("login.html");
 
         } else {
             alert("failed to sign up");
-            window.open("sign_up.html");
+            window.location.assign("sign_up.html");
+        }
 
+    });
+});
+
+// $('#directory').on('click', 'button', function(e) {
+//     $('#restaurant').innerHTML = '<h4>'+name+'</h4>';
+// });
+
+$(function () {
+    $('#reservationButton').click(function () {
+        var date = document.getElementById('date').value;
+        var time = document.getElementById('time').value;
+        var people = document.getElementById('people').value;
+
+        var theUrl ="ajax.php?cmd=4&date=" +date+ "&time=" + time +
+            "&people="+people;
+        var obj = sendRequest(theUrl);
+
+        if (obj.result == 1) {
+            alert("Reservation message sent");
+
+        } else {
+            alert("Failed to send reservation message");
         }
     });
 });
+
+function makeReservation(name){
+    window.location.assign("reservation.html?restaurant="+name);
+}
+
+
 
 $(function () {
     $('#loginButton').click(function () {
         var email = document.getElementById('loginEmail').value;
         var password = document.getElementById('loginPassword').value;
 
-        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=1&email="+email+"&password="+password;
+        var theUrl = "ajax.php?cmd=1&email="+email+"&password="+password;
         var obj = sendRequest(theUrl);
 
         if (obj.result === 1) {
             alert("Login successful");
             if(email == "admin@gmail.com"){
-                window.open("admin_index.html");
+                window.location.assign("admin_index.html");
             }else {
-                window.open("index.html");
+                window.location.assign("index.html");
             }
 
         } else {
             alert("failed to login");
-            window.open("login.html");
-
+            window.location.assign("login.html");
         }
+
     });
 });
 
@@ -61,7 +90,7 @@ $(function () {
         var address = document.getElementById('address').value;
         var type = document.getElementById('place_type').value;
 
-        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
+        var theUrl = "ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
             "&latitude="+latitude+ "&address=" + address+ "&type=" + type;
         var obj = sendRequest(theUrl);
 
@@ -72,7 +101,7 @@ $(function () {
         } else {
             alert("failed to add place");
             window.open("add_place.html");
-
         }
+
     });
 });

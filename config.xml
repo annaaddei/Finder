@@ -3,7 +3,7 @@
   <name>Lookup</name>
   <description>An app that helps you find places of interest near you</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Apache Cordova Team </author>
-  <content src="login.html" />
+  <content src="reservation.html" />
   <access origin="*" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
@@ -123,4 +123,5 @@
   <plugin name="cordova-plugin-compat" />
   <plugin name="cordova-plugin-file"  />
   <plugin name="cordova-plugin-geolocation" />
+  <plugin name="cordova-plugin-contacts" />
 </widget>

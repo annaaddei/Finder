@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make Reservation</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.css" rel="stylesheet">
+    <link href="css/bootstyle.css" rel="stylesheet">
+
+    <script>
+        var userAgent = navigator.userAgent + '';
+        if (userAgent.indexOf('iPhone') > -1) {
+            document.write('<script src="js/cordova-iphone.js"></sc' + 'ript>');
+            var mobile_system = 'iphone';
+        } else if (userAgent.indexOf('Android') > -1) {
+            document.write('<script src="js/cordova-android.js"></sc' + 'ript>');
+            var mobile_system = 'android';
+        } else {
+            var mobile_system = '';
+        }
+    </script>
+
+    <script>
+        var restaurant_name;
+        window.onload = function () {
+            var url = document.location.href,
+                    params = url.split('?')[1].split('&'),
+                    data = {}, tmp;
+
+            for (var i = 0, l = params.length; i < l; i++) {
+                tmp = params[i].split('=');
+                data[tmp[0]] = tmp[1];
+            }
+            restaurant_name = data.restaurant;
+            document.getElementById('restaurant_name').innerHTML = "<h5><b>Make reservation at " + data.restaurant + "</b></h5>";
+        }
+
+//        function invite() {
+//                var date = document.getElementById('date').value;
+//                var time = document.getElementById('time').value;
+//
+//                var theUrl = "ajax.php?cmd=5&date=" + date + "&time=" + time +
+//                        "&restaurant=" + restaurant_name;
+//                var obj = sendRequest(theUrl);
+//
+//                if (obj.result == 1) {
+//                    alert("Invitation sent");
+//
+//                } else {
+//                    alert("Failed to send invitation");
+//                }
+//            }
+
+    </script>
+
+    <script>
+        function invite() {
+            navigator.contacts.pickContact(function onResume(resumeEvent) {
+                if(resumeEvent.pendingResult) {
+                    if(resumeEvent.pendingResult.pluginStatus === "OK") {
+                        var contact = navigator.contacts.create(resumeEvent.pendingResult.result);
+                        successCallback(contact);
+                    } else {
+                        failCallback(resumeEvent.pendingResult.result);
+                    }
+                }
+            },function(err){
+                console.log('Error: ' + err);
+            });
+
+        }
+    </script>
+
+
+</head>
+<body>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RESERVATION</a>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li><div class="userView">
+                `         <div class=" center">
+                <img src="images/logo.png">
+            </div>
+            </div></li>
+            <div class="center">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="atm.html">ATMs</a></li>
+                <li><a href="hospital.html">Hospitals</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </div>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<div class="center-block">
+    <form class="col-md-12">
+        <div id="restaurant" class="center">
+            <div class="space-30"></div>
+            <div id="restaurant_name"></div>
+        </div>
+
+        <br>
+        <div class="center input-field">
+            <h5>Date</h5>
+            <i class="material-icons prefix">date_range</i>
+            <input id="date" type="date" class="validate">
+        </div>
+        <div class="center input-field">
+            <h5>Time</h5>
+            <i class="material-icons prefix">access_time</i>
+            <input id="time" type="time" class="validate">
+        </div>
+        <div class="center input-field">
+            <h5>Number of people</h5>
+            <i class="material-icons prefix">people</i>
+            <input id="people" type="number" class="validate">
+        </div>
+
+        <div class="space-30"></div>
+        <div class="text-center center">
+            <button type="button" id="reservationButton" class="btn btn-info waves-effect waves-light" style="color: black">Make Reservation</button>
+            <button type="button" id="inviteButton" class="btn btn-info waves-effect waves-light" onclick="invite()" style="color: black">Invite People</button>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.js"></script>
+<script type="text/javascript" src="js/my_script.js"></script>
+</body>
+</html>
