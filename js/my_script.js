@@ -60,7 +60,7 @@ $(function () {
         var time = document.getElementById('time').value;
         var people = document.getElementById('people').value;
 
-        var theUrl ="ajax.php?cmd=4&date=" +date+ "&time=" + time +
+        var theUrl ="http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=4&date=" +date+ "&time=" + time +
             "&people="+people;
         var obj = sendRequest(theUrl);
 
@@ -117,11 +117,11 @@ $(function () {
 
         if (obj.result == 1) {
             alert("Add place successful");
-            window.open("restaurants_admin.html");
+            window.location.assign("restaurants_admin.html");
 
         } else {
             alert("failed to add place");
-            window.open("add_place.html");
+            window.location.assign("add_place.html");
         }
 
     });
