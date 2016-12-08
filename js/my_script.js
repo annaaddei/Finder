@@ -6,26 +6,26 @@ function sendRequest(u) {
     return $.parseJSON(obj.responseText);
 }
 
-$(function () {
-    $('#inviteButton').click(function () {
-        function onSuccess(contacts) {
-            alert('Found ' + contacts.length + ' contacts.');
-        };
-
-        function onError(contactError) {
-            alert('onError!');
-        };
-
-        var options      = new ContactFindOptions();
-        options.filter   = "John";
-        options.multiple = true;
-        options.desiredFields = [navigator.contacts.fieldType.id];
-        options.hasPhoneNumber = true;
-        var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-        navigator.contacts.find(fields, onSuccess, onError, options);
-
-    });
-});
+// $(function () {
+//     $('#inviteButton').click(function () {
+//         function onSuccess(contacts) {
+//             alert('Found ' + contacts.length + ' contacts.');
+//         };
+//
+//         function onError(contactError) {
+//             alert('onError!');
+//         };
+//
+//         var options      = new ContactFindOptions();
+//         options.filter   = "John";
+//         options.multiple = true;
+//         options.desiredFields = [navigator.contacts.fieldType.id];
+//         options.hasPhoneNumber = true;
+//         var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+//         navigator.contacts.find(fields, onSuccess, onError, options);
+//
+//     });
+// });
 
 $(function () {
     $('#signUpButton').click(function () {
@@ -34,13 +34,13 @@ $(function () {
         var phoneNumber = document.getElementById('signUpPhoneNumber').value;
         var password = document.getElementById('signUpPassword').value;
 
-        var theUrl = "ajax.php?cmd=2&name=" +name+ "&password=" + password +
+        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=2&name=" +name+ "&password=" + password +
             "&email="+email+ "&phoneNumber=" + phoneNumber;
         var obj = sendRequest(theUrl);
 
         if (obj.result == 1) {
             alert("Sign up successful");
-            window.location.assign("login.html");
+            window.location.assign("index.html");
 
         } else {
             alert("failed to sign up");
@@ -84,7 +84,7 @@ $(function () {
         var email = document.getElementById('loginEmail').value;
         var password = document.getElementById('loginPassword').value;
 
-        var theUrl = "ajax.php?cmd=1&email="+email+"&password="+password;
+        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=1&email="+email+"&password="+password;
         var obj = sendRequest(theUrl);
 
         if (obj.result === 1) {
@@ -92,12 +92,12 @@ $(function () {
             if(email == "admin@gmail.com"){
                 window.location.assign("admin_index.html");
             }else {
-                window.location.assign("index.html");
+                window.location.assign("dashboard.html");
             }
 
         } else {
             alert("failed to login");
-            window.location.assign("login.html");
+            window.location.assign("index.html");
         }
 
     });
@@ -111,7 +111,7 @@ $(function () {
         var address = document.getElementById('address').value;
         var type = document.getElementById('place_type').value;
 
-        var theUrl = "ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
+        var theUrl = "http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=3&name=" +name+ "&longitude=" + longitude +
             "&latitude="+latitude+ "&address=" + address+ "&type=" + type;
         var obj = sendRequest(theUrl);
 

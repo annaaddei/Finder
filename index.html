@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+    <meta charset="UTF-8">
+    <title>Lookup Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.css" rel="stylesheet">
+    <link href="css/bootstyle.css" rel="stylesheet">
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script>
         var userAgent = navigator.userAgent + '';
         if (userAgent.indexOf('iPhone') > -1) {
@@ -22,95 +23,47 @@
         }
     </script>
 
-    <script type="text/javascript" src="cordova.js"></script>
 
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a style="color: black" id="logo-container" href="#" class="brand-logo">LOOKUP</a>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><div class="userView">
-         <div class=" center">
-          <img src="images/logo.png">
-        </div>
-      </div></li>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" style="color: black"><img src="images/logo.png"></a>
+    </div>
+</nav>
+<div class="center-block">
+    <form class="col-md-12">
         <div class="center">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="restaurants.html">Restaurants</a></li>
-            <li><a href="atm.html">ATMs</a></li>
-            <li><a href="hospital.html">Hospitals</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <div class="space-30"></div>
+            <div class="space-30"></div>
+            <h1>LOGIN</h1>
+            <h4>Start your search now!</h4>
         </div>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><img style="padding-top: 5px" src="images/menu.png"></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br>
-      <h3 class="header center orange-text">Your search begins here</h3>
-      <br>
-
-    </div>
-  </div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="center">
-              <a href="restaurants.html"><img src="images/restaurant.png"></a>
-            <h4 class="center">Restaurants</h4>
-
-            <p class="light center">Hungry? Allow us to find you some good place to eat</p>
-          </div>
+        <div class="space-30"></div>
+        <br>
+        <div class="input-field">
+            <i class="material-icons prefix">mail</i>
+            <input id="loginEmail" type="email" class="validate">
+            <label for="loginEmail">Your Email</label>
         </div>
-        <br><br>
-        <div class="col s12 m4">
-          <div class="center">
-              <a href="atm.html"> <img src="images/atm.png"></a>
-            <h4 class="center">ATMs</h4>
-
-            <p class="light center">Don't stay short of cash. Find an ATM near you.</p>
-          </div>
+        <div class="input-field">
+            <i class="material-icons prefix">lock</i>
+            <input id="loginPassword" type="password" class="validate">
+            <label for="loginPassword">Your Password</label>
         </div>
-          <br>
-          <br>
-          <div class="col s12 m4">
-              <div class="center">
-                  <a href="hospital.html"><img src="images/hospital.png"></a>
-                  <h4 class="center">Hospitals</h4>
-
-                  <p class="light center">Find the nearest health care provider</p>
-              </div>
-          </div>
-      </div>
-
-    </div>
-    <br><br>
-
-    <div class="section">
-
-    </div>
-  </div>
-
-  <footer class="page-footer orange">
-    <div class="footer-copyright">
-      <div class="container center">
-      Made at Ashesi
-      </div>
-    </div>
-  </footer>
+        <div class="space-30"></div>
+        <div class="text-center center">
+            <button type="button" id="loginButton" class="btn btn-info waves-effect waves-light" style="color: black">Submit</button>
+        </div>
+        <div class="text-center center">
+            <a href="sign_up.html">Don't have an account</a>
+        </div>
+    </form>
+</div>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  </body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.js"></script>
+<script type="text/javascript" src="js/my_script.js"></script>
+</body>
 </html>
