@@ -59,18 +59,21 @@
 
     <script>
         function invite() {
-            navigator.contacts.pickContact(function onResume(resumeEvent) {
-                if(resumeEvent.pendingResult) {
-                    if(resumeEvent.pendingResult.pluginStatus === "OK") {
-                        var contact = navigator.contacts.create(resumeEvent.pendingResult.result);
-                        successCallback(contact);
-                    } else {
-                        failCallback(resumeEvent.pendingResult.result);
-                    }
-                }
-            },function(err){
-                console.log('Error: ' + err);
-            });
+            function onSuccess(contacts) {
+                alert('Found ' + contacts.length + ' contacts.');
+            };
+
+            function onError(contactError) {
+                alert('onError!');
+            };
+            
+            var options      = new ContactFindOptions();
+            options.filter   = "John";
+            options.multiple = true;
+            options.desiredFields = [navigator.contacts.fieldType.id];
+            options.hasPhoneNumber = true;
+            var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+            navigator.contacts.find(fields, onSuccess, onError, options);
 
         }
     </script>
