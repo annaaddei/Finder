@@ -57,26 +57,26 @@
 
     </script>
 
-    <script>
-        function invite() {
-            function onSuccess(contacts) {
-                alert('Found ' + contacts.length + ' contacts.');
-            };
+    <!--<script>-->
+        <!--function invite() {-->
+            <!--function onSuccess(contacts) {-->
+                <!--alert('Found ' + contacts.length + ' contacts.');-->
+            <!--};-->
 
-            function onError(contactError) {
-                alert('onError!');
-            };
-            
-            var options      = new ContactFindOptions();
-            options.filter   = "John";
-            options.multiple = true;
-            options.desiredFields = [navigator.contacts.fieldType.id];
-            options.hasPhoneNumber = true;
-            var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-            navigator.contacts.find(fields, onSuccess, onError, options);
+            <!--function onError(contactError) {-->
+                <!--alert('onError!');-->
+            <!--};-->
+            <!---->
+            <!--var options      = new ContactFindOptions();-->
+            <!--options.filter   = "John";-->
+            <!--options.multiple = true;-->
+            <!--options.desiredFields = [navigator.contacts.fieldType.id];-->
+            <!--options.hasPhoneNumber = true;-->
+            <!--var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];-->
+            <!--navigator.contacts.find(fields, onSuccess, onError, options);-->
 
-        }
-    </script>
+        <!--}-->
+    <!--</script>-->
 
 
 </head>
@@ -128,7 +128,7 @@
         <div class="space-30"></div>
         <div class="text-center center">
             <button type="button" id="reservationButton" class="btn btn-info waves-effect waves-light" style="color: black">Make Reservation</button>
-            <button type="button" id="inviteButton" class="btn btn-info waves-effect waves-light" onclick="invite()" style="color: black">Invite People</button>
+            <button type="button" id="inviteButton" class="btn btn-info waves-effect waves-light" style="color: black">Invite People</button>
         </div>
     </form>
 </div>

@@ -7,6 +7,27 @@ function sendRequest(u) {
 }
 
 $(function () {
+    $('#inviteButton').click(function () {
+        function onSuccess(contacts) {
+            alert('Found ' + contacts.length + ' contacts.');
+        };
+
+        function onError(contactError) {
+            alert('onError!');
+        };
+
+        var options      = new ContactFindOptions();
+        options.filter   = "John";
+        options.multiple = true;
+        options.desiredFields = [navigator.contacts.fieldType.id];
+        options.hasPhoneNumber = true;
+        var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+        navigator.contacts.find(fields, onSuccess, onError, options);
+
+    });
+});
+
+$(function () {
     $('#signUpButton').click(function () {
         var name = document.getElementById('signUpName').value;
         var email = document.getElementById('signUpEmail').value;
