@@ -91,24 +91,22 @@ function makeReservation()
     $message = "Hello%20there.%20I'd%20like%20to%20make%20a%20reservation%20for%20" .$people. '%20person(s)%20on%20'. $date. '%20at%20' .$time ;
     $url = "http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=233274446115&from=Lookup&smsc=esstigo&text=".$message;
 
-    $ch = curl_init();
+    $ch = curl_init($url);
 
-    $options = array(
-        CURLOPT_URL            => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HEADER         => true,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_ENCODING       => "",
-        CURLOPT_AUTOREFERER    => true,
-        CURLOPT_CONNECTTIMEOUT => 120,
-        CURLOPT_TIMEOUT        => 120,
-        CURLOPT_MAXREDIRS      => 10,
-    );
-    curl_setopt_array( $ch, $options );
+//    $options = array(
+//        CURLOPT_URL            => $url,
+//        CURLOPT_RETURNTRANSFER => true,
+//        CURLOPT_HEADER         => true,
+//        CURLOPT_FOLLOWLOCATION => true,
+//        CURLOPT_ENCODING       => "",
+//        CURLOPT_AUTOREFERER    => true,
+//        CURLOPT_CONNECTTIMEOUT => 120,
+//        CURLOPT_TIMEOUT        => 120,
+//        CURLOPT_MAXREDIRS      => 10,
+//    );
+//    curl_setopt_array( $ch, $options );
+
     $response = curl_exec($ch);
-
-
-    echo '{"result":1,"message":"message sent"}';
 
 }
 

@@ -62,16 +62,17 @@ $(function () {
 
         var theUrl ="http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=4&date=" +date+ "&time=" + time +
             "&people="+people;
-        var obj = sendRequest(theUrl);
+        $.ajax(theUrl,
+            {async:true,complete:reservationComplete}
+        );
 
-        if (obj.result == 1) {
-            alert("Reservation message sent");
 
-        } else {
-            alert("Failed to send reservation message");
-        }
     });
 });
+
+function reservationComplete(xhr,status){
+    alert("Reservation message sent");
+}
 
 function makeReservation(name){
     window.location.assign("reservation.html?restaurant="+name);
