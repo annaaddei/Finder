@@ -77,6 +77,12 @@ function makeReservation(name){
     window.location.assign("reservation.html?restaurant="+name);
 }
 
+function directions(location){
+    location = location.replace(/\s/g, "");
+    location = location.substring(1);
+    location = location.substring(0, location.length-1);
+    window.location.assign("directions.html?here="+location);
+}
 
 $(function () {
     $('#loginButton').click(function () {

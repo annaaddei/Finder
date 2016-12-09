@@ -108,7 +108,6 @@ function makeReservation()
     $response = curl_exec($ch);
 
 
-
     echo '{"result":1,"message":"message sent"}';
 
 }

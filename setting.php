@@ -1,6 +1,6 @@
 <?php
 define("DB_HOST","localhost");
-define("DB_USERNAME","anna.addei");
-define("DB_PASSWORD","2aced175a3772867");
-define("DB_NAME","mobileweb__anna_addei");
+define("DB_USERNAME","root");
+define("DB_PASSWORD","");
+define("DB_NAME","lookup");
 define("PORT", 3306);

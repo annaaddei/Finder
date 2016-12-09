@@ -130,7 +130,7 @@
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(place.name);
+                infowindow.setContent(place.name + '<div><button class="btn-flat center" style="color: #039be5" onclick="directions(\'' + place.geometry.location + '\')">Directions</button></div>');
                 infowindow.open(map, this);
             });
 
@@ -182,6 +182,7 @@
 <!--  Scripts-->
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBPIyRMtw_TD8PgkuCSlkkhvrmrXoAFL90&libraries=places&callback=showMap"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/my_script.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
 </body>
