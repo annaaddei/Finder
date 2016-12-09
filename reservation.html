@@ -39,14 +39,6 @@
             document.getElementById('restaurant_name').innerHTML = "<h5><b>Make reservation at " + data.restaurant + "</b></h5>";
         }
 
-        function invite() {
-            alert('here');
-            navigator.contacts.pickContact(function(contact){
-                console.log('The following contact has been selected:' + JSON.stringify(contact));
-            },function(err){
-                console.log('Error: ' + err);
-            });
-            }
 
     </script>
 
@@ -121,11 +113,10 @@
         <div class="space-30"></div>
         <div class="text-center center">
             <button type="button" id="reservationButton" class="btn btn-info waves-effect waves-light" style="color: black">Make Reservation</button>
-            <button type="button" onclick="invite()" class="btn btn-info waves-effect waves-light" style="color: black">Invite People</button>
+            <button type="button" id="inviteButton" class="btn btn-info waves-effect waves-light" style="color: black">Invite People</button>
         </div>
     </form>
 </div>
-
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
