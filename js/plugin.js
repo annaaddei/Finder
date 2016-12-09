@@ -1,9 +1,8 @@
-/**
- * Created by Sheila on 12/9/2016.
- */
-(function () {
+(function() {
+
     document.addEventListener('deviceready', onDeviceReady.bind(this), false);
-    function onDeviceReady(){
+
+    function onDeviceReady() {
         document.getElementById("inviteButton").onclick = function() {
             navigator.contacts.pickContact(function(contact){
                 console.log('The following contact has been selected:' + JSON.stringify(contact));
@@ -11,8 +10,6 @@
                 console.log('Error: ' + err);
             });
         }
-
-
     };
 
 })();
