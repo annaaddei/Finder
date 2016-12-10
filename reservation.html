@@ -36,7 +36,7 @@
                 data[tmp[0]] = tmp[1];
             }
             restaurant_name = data.restaurant;
-            restaurant_name = restaurant_name.replace("%20", " ");
+            restaurant_name = restaurant_name.replace(/%20/g, " ");
             document.getElementById('restaurant_name').innerHTML = "<h5><b>Make reservation at " + restaurant_name + "</b></h5>";
         }
 
@@ -48,8 +48,8 @@
 <body>
 <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-        <a href="index.html"  ><img src="images/back.png"></a>
-        <a id="logo-container" href="restaurants_dir.html" class="brand-logo" style="color: black">Reservations</a>
+        <a href="restaurants_dir.html"  ><img src="images/back.png"></a>
+        <a id="logo-container" href="" class="brand-logo" style="color: black">Reservations</a>
     </div>
 
 </nav>
@@ -85,7 +85,6 @@
         <div class="space-30"></div>
         <div class="text-center center">
             <button type="button" id="reservationButton" class="btn btn-info waves-effect waves-light" style="color: black">Make Reservation</button>
-            <button type="button" id="inviteButton" class="btn btn-info waves-effect waves-light" style="color: black">Invite People</button>
         </div>
     </form>
 </div>

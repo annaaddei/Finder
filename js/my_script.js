@@ -39,9 +39,9 @@ $(function () {
         var people = document.getElementById('people').value;
 
         var message = "Hello%20there.%20I'm%20"+name+"%20and%20I'd%20like%20to%20make%20a%20reservation%20for%20" +people+ '%20person(s)%20on%20'+ date+ '%20at%20' +time ;
-        var url = "http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=233274446115&from=Lookup&smsc=esstigo&text="+message;
+        var url = "http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=233244304528&from=Lookup&smsc=esstigo&text="+message;
         window.open(url);
-        window.open("restaurants.html");
+        window.open("restaurants_dir.html");
 
     });
 });

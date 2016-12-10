@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hospitals</title>
+    <title>ATM</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -78,7 +78,7 @@
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(place.name + '<div><button class="btn-flat center" style="color: #039be5" onclick="directions(\'' + place.geometry.location + '\')">Directions</button></div>');
+                infowindow.setContent('<b>'+place.name+'</b>' + '<div>'+place.vicinity+'</div><div><button class="btn-flat center" style="color: #039be5" onclick="directions(\'' + place.geometry.location + '\')">Directions</button></div>');
                 infowindow.open(map, this);
             });
         }
