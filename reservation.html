@@ -36,55 +36,22 @@
                 data[tmp[0]] = tmp[1];
             }
             restaurant_name = data.restaurant;
-            document.getElementById('restaurant_name').innerHTML = "<h5><b>Make reservation at " + data.restaurant + "</b></h5>";
+            restaurant_name = restaurant_name.replace("%20", " ");
+            document.getElementById('restaurant_name').innerHTML = "<h5><b>Make reservation at " + restaurant_name + "</b></h5>";
         }
 
 
     </script>
 
-    <!--<script>-->
-        <!--function invite() {-->
-            <!--function onSuccess(contacts) {-->
-                <!--alert('Found ' + contacts.length + ' contacts.');-->
-            <!--};-->
-
-            <!--function onError(contactError) {-->
-                <!--alert('onError!');-->
-            <!--};-->
-            <!---->
-            <!--var options      = new ContactFindOptions();-->
-            <!--options.filter   = "John";-->
-            <!--options.multiple = true;-->
-            <!--options.desiredFields = [navigator.contacts.fieldType.id];-->
-            <!--options.hasPhoneNumber = true;-->
-            <!--var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];-->
-            <!--navigator.contacts.find(fields, onSuccess, onError, options);-->
-
-        <!--}-->
-    <!--</script>-->
-
 
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RESERVATION</a>
-
-        <ul id="nav-mobile" class="side-nav">
-            <li><div class="userView">
-                `         <div class=" center">
-                <img src="images/logo.png">
-            </div>
-            </div></li>
-            <div class="center">
-                <li><a href="dashboard.html">Home</a></li>
-                <li><a href="restaurants.html">Restaurants</a></li>
-                <li><a href="atm.html">ATMs</a></li>
-                <li><a href="hospital.html">Hospitals</a></li>
-                <li><a href="index.html">Logout</a></li>
-            </div>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div class="nav-wrapper container">
+        <a href="index.html"  ><img src="images/back.png"></a>
+        <a id="logo-container" href="restaurants_dir.html" class="brand-logo" style="color: black">Reservations</a>
     </div>
+
 </nav>
 <div class="center-block">
     <form class="col-md-12">
@@ -94,6 +61,11 @@
         </div>
 
         <br>
+        <div class="center input-field">
+            <h5>Make reservation in name of:</h5>
+            <i class="material-icons prefix">perm_identity</i>
+            <input id="name" type="text" class="validate">
+        </div>
         <div class="center input-field">
             <h5>Date</h5>
             <i class="material-icons prefix">date_range</i>

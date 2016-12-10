@@ -6,26 +6,6 @@ function sendRequest(u) {
     return $.parseJSON(obj.responseText);
 }
 
-// $(function () {
-//     $('#inviteButton').click(function () {
-//         function onSuccess(contacts) {
-//             alert('Found ' + contacts.length + ' contacts.');
-//         };
-//
-//         function onError(contactError) {
-//             alert('onError!');
-//         };
-//
-//         var options      = new ContactFindOptions();
-//         options.filter   = "John";
-//         options.multiple = true;
-//         options.desiredFields = [navigator.contacts.fieldType.id];
-//         options.hasPhoneNumber = true;
-//         var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-//         navigator.contacts.find(fields, onSuccess, onError, options);
-//
-//     });
-// });
 
 $(function () {
     $('#signUpButton').click(function () {
@@ -50,29 +30,23 @@ $(function () {
     });
 });
 
-// $('#directory').on('click', 'button', function(e) {
-//     $('#restaurant').innerHTML = '<h4>'+name+'</h4>';
-// });
 
 $(function () {
     $('#reservationButton').click(function () {
+        var name = document.getElementById('name').value;
         var date = document.getElementById('date').value;
         var time = document.getElementById('time').value;
         var people = document.getElementById('people').value;
 
-        var theUrl ="http://52.89.116.249/~anna.addei/Finder/ajax.php?cmd=4&date=" +date+ "&time=" + time +
-            "&people="+people;
-        $.ajax(theUrl,
-            {async:true,complete:reservationComplete}
-        );
-
+        var message = "Hello%20there.%20I'm%20"+name+"%20and%20I'd%20like%20to%20make%20a%20reservation%20for%20" +people+ '%20person(s)%20on%20'+ date+ '%20at%20' +time ;
+        var url = "http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=233274446115&from=Lookup&smsc=esstigo&text="+message;
+        window.open(url);
+        window.open("restaurants.html");
 
     });
 });
 
-function reservationComplete(xhr,status){
-    alert("Reservation message sent");
-}
+
 
 function makeReservation(name){
     window.location.assign("reservation.html?restaurant="+name);
